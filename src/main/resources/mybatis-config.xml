@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入database.properties文件中的信息-->
+    <properties resource="database.properties"></properties>
+    <!--配置log4j-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"></setting>
+    </settings>
+    <!--typeAliases标签中package name可以直接查找到目录下的文件-->
+    <typeAliases>
+        <package name="entity"></package>
+    </typeAliases>
+    <!--环境配置-->
+    <environments default="dev">
+        <environment id="dev">
+            <!--事务管理-->
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"></property>
+                <property name="url" value="${jdbc.url}"></property>
+                <property name="username" value="${jdbc.userName}"></property>
+                <property name="password" value="${jdbc.passWorld}"></property>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- 通过resource加载单个的映射文件 -->
+    <mappers>
+        <mapper resource="dao/UserMapper.xml"></mapper>
+    </mappers>
+</configuration>
